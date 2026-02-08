@@ -3,19 +3,19 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>💘 Propuesta San Valentín</title>
+  <title>💘 Para Jelly</title>
   <style>
     :root{
-      --bg1:#0b1020;
+      --bg1:#090a14;
       --bg2:#1a0b2e;
       --card:#ffffff10;
-      --stroke:#ffffff20;
+      --stroke:#ffffff22;
       --text:#fff;
-      --muted:#ffffffb3;
-      --yes:#ff4d8d;
-      --yes2:#ff7ab3;
-      --no:#ffffff1f;
-      --noStroke:#ffffff35;
+      --muted:#ffffffb8;
+      --pink1:#ff4d8d;
+      --pink2:#ff7ab3;
+      --btn2:#ffffff14;
+      --btn2Stroke:#ffffff2a;
     }
     *{box-sizing:border-box}
     body{
@@ -23,197 +23,168 @@
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       color:var(--text);
       background:
-        radial-gradient(1200px 800px at 20% 10%, #ff4d8d30, transparent 60%),
-        radial-gradient(1200px 800px at 80% 20%, #7c3aed33, transparent 55%),
+        radial-gradient(1200px 800px at 18% 12%, #ff4d8d2e, transparent 60%),
+        radial-gradient(1200px 800px at 82% 20%, #7c3aed30, transparent 55%),
         linear-gradient(180deg, var(--bg1), var(--bg2));
       overflow:hidden;
     }
 
-    /* Corazones de fondo */
-    .hearts {
-      position:fixed; inset:0; pointer-events:none; opacity:.9;
-      filter: drop-shadow(0 6px 12px #00000055);
+    /* Corazones flotando */
+    .hearts{position:fixed; inset:0; pointer-events:none; opacity:.95; filter: drop-shadow(0 6px 12px #00000055);}
+    .heart{
+      position:absolute; width:12px; height:12px; transform: rotate(45deg);
+      background: var(--pink1); border-radius: 3px; animation: floatUp linear infinite; opacity:.82;
     }
-    .heart {
-      position:absolute;
-      width:12px; height:12px;
-      transform: rotate(45deg);
-      background: #ff4d8d;
-      border-radius: 3px;
-      animation: floatUp linear infinite;
-      opacity:.8;
-    }
-    .heart::before, .heart::after{
-      content:""; position:absolute; width:12px; height:12px;
-      background:#ff4d8d; border-radius:50%;
-    }
-    .heart::before{ left:-6px; top:0; }
-    .heart::after{ top:-6px; left:0; }
-
-    @keyframes floatUp {
-      from { transform: translateY(20px) rotate(45deg); opacity:0; }
-      10% { opacity:.85; }
-      to { transform: translateY(-120vh) rotate(45deg); opacity:0; }
+    .heart::before,.heart::after{content:""; position:absolute; width:12px; height:12px; background:inherit; border-radius:50%;}
+    .heart::before{left:-6px; top:0}
+    .heart::after{top:-6px; left:0}
+    @keyframes floatUp{
+      from{transform: translateY(20px) rotate(45deg); opacity:0}
+      10%{opacity:.85}
+      to{transform: translateY(-120vh) rotate(45deg); opacity:0}
     }
 
+    .wrap{width:min(660px, 92vw); padding:18px;}
     .card{
-      width:min(560px, 92vw);
       background: linear-gradient(180deg, #ffffff14, #ffffff0c);
       border:1px solid var(--stroke);
-      border-radius:22px;
+      border-radius:24px;
       padding:22px 18px 18px;
       backdrop-filter: blur(10px);
       box-shadow: 0 18px 60px #00000055;
       position:relative;
+      overflow:hidden;
     }
-
     .badge{
-      display:inline-flex; gap:8px; align-items:center;
-      padding:8px 12px;
-      border:1px solid var(--stroke);
-      border-radius:999px;
-      background:#ffffff0d;
-      color:var(--muted);
-      font-size:13px;
+      display:inline-flex; gap:10px; align-items:center;
+      padding:8px 12px; border:1px solid var(--stroke);
+      border-radius:999px; background:#ffffff0d;
+      color:var(--muted); font-size:13px;
     }
-
     h1{
-      margin:14px 0 6px;
-      font-size: clamp(22px, 3.4vw, 34px);
-      line-height:1.1;
+      margin:14px 0 8px;
+      font-size: clamp(24px, 3.6vw, 38px);
+      line-height:1.08;
       letter-spacing:.2px;
     }
     p{
       margin: 0 0 14px;
       color: var(--muted);
-      line-height:1.45;
-      font-size: 15.5px;
+      line-height:1.55;
+      font-size: 15.8px;
     }
-
     .type{
-      min-height: 24px;
-      font-weight:600;
+      min-height: 26px;
+      font-weight:700;
       color:#fff;
+      margin-bottom:10px;
     }
-
     .actions{
-      margin-top:14px;
+      margin-top:16px;
       display:flex; gap:12px; flex-wrap:wrap;
       justify-content:center;
       position:relative;
       padding: 8px 0 2px;
+      min-height: 64px;
     }
-
     button{
-      border:0;
-      padding: 12px 16px;
-      border-radius: 14px;
-      font-weight: 700;
+      border:0; padding: 12px 16px;
+      border-radius: 16px;
+      font-weight: 800;
       cursor:pointer;
       transition: transform .12s ease, filter .12s ease, box-shadow .12s ease;
       user-select:none;
-      min-width: 140px;
+      min-width: 160px;
     }
     button:active{ transform: scale(.98); }
-
     .yes{
-      background: linear-gradient(135deg, var(--yes), var(--yes2));
+      background: linear-gradient(135deg, var(--pink1), var(--pink2));
       color:#fff;
       box-shadow: 0 12px 28px #ff4d8d40;
     }
     .yes:hover{ filter:brightness(1.05); transform: translateY(-1px); }
-
     .no{
-      background: var(--no);
-      border:1px solid var(--noStroke);
+      background: var(--btn2);
+      border:1px solid var(--btn2Stroke);
       color:#fff;
       box-shadow: 0 10px 26px #0000002d;
       position:relative;
     }
     .no:hover{ transform: translateY(-1px); }
-
     .footer{
       margin-top:14px;
       display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap;
-      color:#ffffff99;
-      font-size:12.5px;
+      color:#ffffffa8;
+      font-size:12.8px;
     }
-    .footer a{ color:#ffffffcc; text-decoration:none; border-bottom:1px dashed #ffffff66; }
-    .footer a:hover{ color:#fff; border-bottom-color:#fff; }
 
-    /* Pantalla final */
+    /* Overlay final */
     .overlay{
       position:fixed; inset:0; display:none; place-items:center;
-      background: #050612cc;
-      backdrop-filter: blur(8px);
-      z-index: 10;
-      padding: 18px;
+      background: #050612cc; backdrop-filter: blur(8px);
+      z-index: 10; padding: 18px;
     }
     .overlay.show{ display:grid; }
     .modal{
-      width:min(640px, 94vw);
-      border-radius:24px;
+      width:min(720px, 94vw);
+      border-radius:26px;
       background: linear-gradient(180deg, #ffffff18, #ffffff10);
       border:1px solid #ffffff22;
       box-shadow: 0 30px 90px #00000066;
       padding: 22px 18px 18px;
-      position:relative;
-      overflow:hidden;
+      position:relative; overflow:hidden;
+    }
+    .close{
+      position:absolute; right:12px; top:12px;
+      width:42px; min-width:auto; height:42px;
+      border-radius:16px;
+      background:#ffffff10;
+      border:1px solid #ffffff20;
+      color:#fff; font-size:18px; line-height:1;
     }
     .modal h2{
-      margin: 4px 0 8px;
-      font-size: clamp(22px, 3.4vw, 32px);
+      margin: 10px 0 8px;
+      font-size: clamp(22px, 3.4vw, 34px);
+      line-height:1.1;
     }
     .modal p{ margin:0 0 14px; }
     .chips{ display:flex; flex-wrap:wrap; gap:8px; margin: 10px 0 2px;}
     .chip{
-      font-size:13px;
-      color:#fff;
-      background:#ffffff14;
-      border:1px solid #ffffff24;
-      padding:8px 10px;
-      border-radius:999px;
+      font-size:13px; color:#fff;
+      background:#ffffff14; border:1px solid #ffffff24;
+      padding:8px 10px; border-radius:999px;
     }
-    .close{
-      position:absolute; right:12px; top:12px;
-      width:40px; min-width:auto; height:40px;
-      border-radius:14px;
-      background:#ffffff10;
-      border:1px solid #ffffff20;
-      color:#fff;
-      font-size:18px;
-      line-height:1;
-    }
-
     canvas#confetti{
-      position:fixed; inset:0; pointer-events:none;
-      z-index: 9;
+      position:fixed; inset:0; pointer-events:none; z-index: 9;
     }
+    .tiny{font-size:12.5px; color:#ffffff9a; margin-top:10px;}
   </style>
 </head>
 <body>
   <div class="hearts" id="hearts"></div>
 
-  <main class="card" aria-live="polite">
-    <div class="badge">💌 <span id="toName">Para ti</span> · <span id="today"></span></div>
+  <div class="wrap">
+    <main class="card" aria-live="polite">
+      <div class="badge">💌 Para <b>Jelly</b> · <span id="today"></span></div>
 
-    <h1 id="headline">Tengo una pregunta seria…</h1>
-    <p class="type" id="typeLine"></p>
-    <p id="subtext">
-      Prometo que es una propuesta con cariño 🥹  
-      (Y sí… el botón “No” es sospechoso).
-    </p>
+      <h1>Tengo una pregunta seria…</h1>
+      <div class="type" id="typeLine"></div>
 
-    <div class="actions" id="actions">
-      <button class="yes" id="yesBtn">💖 Sí, acepto</button>
-      <button class="no" id="noBtn">🙈 No</button>
-    </div>
+      <p id="subtext">
+        No es una pregunta cualquiera. Es una de esas que se quedan contigo, porque la respuesta la quiero contigo.
+      </p>
 
-    <div class="footer">
-      <span>Hecho con ❤️ por <b id="fromName">alguien que te quiere</b></span>
-      <span><a href="#" id="editTip">Tip: edita los nombres arriba</a></span>
-    </div>
-  </main>
+      <div class="actions" id="actions">
+        <button class="yes" id="yesBtn">💖 Sí, acepto</button>
+        <button class="no" id="noBtn">🙈 No</button>
+      </div>
+
+      <div class="footer">
+        <span>Hecho con ❤️ para ti</span>
+        <span>— AJ</span>
+      </div>
+    </main>
+  </div>
 
   <canvas id="confetti"></canvas>
 
@@ -221,77 +192,44 @@
     <div class="modal">
       <button class="close" id="closeBtn" aria-label="Cerrar">✕</button>
       <div class="badge">🎉 ¡Dijo que sí!</div>
-      <h2 id="finalTitle">Oficialmente: mi San Valentín 💘</h2>
-      <p id="finalMsg"></p>
+
+      <h2>Jelly… me haces muy feliz 💘</h2>
+      <p>
+        Gracias por elegirnos. Prometo cuidarte, escucharte y seguir sumando detalles bonitos.
+        ¿Te parece si celebramos con una cita especial? 🌷
+      </p>
 
       <div class="chips" id="chips"></div>
 
       <div class="actions" style="justify-content:flex-end; margin-top:12px;">
         <button class="yes" id="copyBtn">📋 Copiar mensajito</button>
       </div>
-      <p style="margin-top:10px; color:#ffffff99; font-size:12.5px;">
-        Si quieres, te preparo otra versión con fotos, música y un “mini juego” 😊
-      </p>
+
+      <p class="tiny">Pista: hoy te toca elegir la primera actividad 😉</p>
     </div>
   </section>
 
   <script>
-    // ========= Personaliza aquí =========
-    const CONFIG = {
-      toName: "Jelly",                 // ← nombre de tu pareja
-      fromName: "AJ",                  // ← tu nombre
-      question: "¿Quieres ser mi San Valentín?",
-      subline: "Elijo un ‘sí’ contigo… sin apuro, sin ruido. Solo tú y yo.",
-      finalTitle: "¡Yupiiii! 💞",
-      finalMsg:
-        "Gracias por decir que sí. Prometo cuidarte, hacerte reír y seguir construyendo lo nuestro con detalles chiquitos y bonitos. ¿Te parece si celebramos con una cita especial? 🌷",
-      planChips: ["🍿 Cine", "🍕 Comida rica", "🌷 Tulipanes", "📸 Fotos juntos", "🎶 Playlist"],
-      noPhrases: [
-        "¿Segura? 🥺",
-        "Piénsalo bien…",
-        "Yo creo que sí 😌",
-        "El botón ‘Sí’ se ve bonito…",
-        "Última oportunidad 😳"
-      ]
-    };
-
-    // ========= Utilidades =========
-    const $ = (sel) => document.querySelector(sel);
-
-    // Fecha bonita (Perú / Lima)
+    // Fecha bonita (Lima)
     const now = new Date();
-    $("#today").textContent = now.toLocaleDateString("es-PE", { weekday:"long", year:"numeric", month:"long", day:"numeric" });
+    document.getElementById("today").textContent =
+      now.toLocaleDateString("es-PE", { weekday:"long", year:"numeric", month:"long", day:"numeric" });
 
-    // Colocar nombres
-    $("#toName").textContent = "Para " + CONFIG.toName;
-    $("#fromName").textContent = CONFIG.fromName;
+    // Texto “máquina de escribir”
+    const typeEl = document.getElementById("typeLine");
+    const question = "¿Quieres ser mi San Valentín?";
 
-    // Texto tipo máquina
-    const typeEl = $("#typeLine");
-    const headline = $("#headline");
-    const subtext = $("#subtext");
-    const lines = [
-      CONFIG.question,
-      CONFIG.subline
-    ];
-
-    async function typeText(el, text, speed=35){
+    async function typeText(el, text, speed=34){
       el.textContent = "";
       for (let i=0; i<text.length; i++){
         el.textContent += text[i];
         await new Promise(r => setTimeout(r, speed));
       }
     }
-
-    (async () => {
-      headline.textContent = "Tengo una pregunta seria…";
-      await typeText(typeEl, lines[0], 32);
-      await new Promise(r => setTimeout(r, 420));
-      subtext.textContent = "(Respira… ahora mira los botones 😅)";
-    })();
+    (async () => { await typeText(typeEl, question, 32); })();
 
     // Corazones flotando
-    const hearts = $("#hearts");
+    const hearts = document.getElementById("hearts");
     function spawnHeart(){
       const h = document.createElement("div");
       h.className = "heart";
@@ -303,30 +241,34 @@
       h.style.width = size + "px";
       h.style.height = size + "px";
       h.style.animationDuration = dur + "s";
-      // variación de color ligera
       const hue = 330 + Math.random() * 25;
       h.style.background = `hsl(${hue} 100% 65%)`;
-      h.style.setProperty("--c", `hsl(${hue} 100% 65%)`);
       hearts.appendChild(h);
       setTimeout(() => h.remove(), dur*1000);
     }
     setInterval(spawnHeart, 220);
 
-    // Botón NO que se escapa (en desktop y móvil)
-    const noBtn = $("#noBtn");
-    const yesBtn = $("#yesBtn");
-    const actions = $("#actions");
+    // Botón NO que se escapa
+    const noBtn = document.getElementById("noBtn");
+    const yesBtn = document.getElementById("yesBtn");
+    const actions = document.getElementById("actions");
 
+    const noPhrases = [
+      "¿Segura? 🥺",
+      "Piénsalo bien…",
+      "Jellyyyy 😳",
+      "Yo confío en ti 😌",
+      "Ok… última vez 🙈"
+    ];
     let noCount = 0;
 
     function moveNoButton(){
       noCount++;
       const rect = actions.getBoundingClientRect();
       const btnRect = noBtn.getBoundingClientRect();
-
-      // límites dentro del contenedor
       const maxX = rect.width - btnRect.width;
-      const maxY = 130; // un rango razonable
+      const maxY = 130;
+
       const x = Math.max(0, Math.random() * maxX);
       const y = Math.max(0, Math.random() * maxY);
 
@@ -334,27 +276,22 @@
       noBtn.style.left = x + "px";
       noBtn.style.top = y + "px";
 
-      // Cambiar texto del NO (graciosito)
-      const phrase = CONFIG.noPhrases[Math.min(noCount-1, CONFIG.noPhrases.length-1)];
+      const phrase = noPhrases[Math.min(noCount-1, noPhrases.length-1)];
       noBtn.textContent = "🙈 " + phrase;
 
-      // Hacer el "Sí" más tentador
       const scale = 1 + Math.min(noCount, 6) * 0.06;
       yesBtn.style.transform = `scale(${scale})`;
       yesBtn.style.boxShadow = `0 18px 40px #ff4d8d55`;
     }
 
-    // En desktop: al pasar el mouse
     noBtn.addEventListener("mouseenter", moveNoButton);
-    // En móvil: al tocar
     noBtn.addEventListener("touchstart", (e) => { e.preventDefault(); moveNoButton(); }, {passive:false});
-    // Y si igual logran tocarlo:
     noBtn.addEventListener("click", moveNoButton);
 
-    // Sí => pantalla final + confetti
-    const overlay = $("#overlay");
-    const closeBtn = $("#closeBtn");
-    const confettiCanvas = $("#confetti");
+    // Modal final + confetti
+    const overlay = document.getElementById("overlay");
+    const closeBtn = document.getElementById("closeBtn");
+    const confettiCanvas = document.getElementById("confetti");
     const ctx = confettiCanvas.getContext("2d");
 
     function resizeCanvas(){
@@ -364,8 +301,33 @@
     window.addEventListener("resize", resizeCanvas);
     resizeCanvas();
 
+    // Chips (plan)
+    const planChips = ["🍿 Cine", "🍕 Comida rica", "🌷 Tulipanes", "📸 Fotos juntos", "🎶 Playlist"];
+    const chipsEl = document.getElementById("chips");
+    for (const c of planChips){
+      const span = document.createElement("span");
+      span.className = "chip";
+      span.textContent = c;
+      chipsEl.appendChild(span);
+    }
+
     let confetti = [];
     let confettiRunning = false;
+
+    // polyfill roundRect
+    if (!CanvasRenderingContext2D.prototype.roundRect) {
+      CanvasRenderingContext2D.prototype.roundRect = function(x, y, w, h, r){
+        const min = Math.min(w, h) / 2;
+        r = Math.min(r, min);
+        this.moveTo(x+r, y);
+        this.arcTo(x+w, y, x+w, y+h, r);
+        this.arcTo(x+w, y+h, x, y+h, r);
+        this.arcTo(x, y+h, x, y, r);
+        this.arcTo(x, y, x+w, y, r);
+        this.closePath();
+        return this;
+      };
+    }
 
     function startConfetti(){
       confetti = Array.from({length: 220}, () => ({
@@ -380,7 +342,6 @@
       }));
       confettiRunning = true;
       requestAnimationFrame(tickConfetti);
-      // parar solo después de un rato
       setTimeout(() => confettiRunning = false, 5200);
     }
 
@@ -404,64 +365,35 @@
       else ctx.clearRect(0,0,confettiCanvas.width, confettiCanvas.height);
     }
 
-    // polyfill roundRect si hiciera falta
-    if (!CanvasRenderingContext2D.prototype.roundRect) {
-      CanvasRenderingContext2D.prototype.roundRect = function(x, y, w, h, r){
-        const min = Math.min(w, h) / 2;
-        r = Math.min(r, min);
-        this.moveTo(x+r, y);
-        this.arcTo(x+w, y, x+w, y+h, r);
-        this.arcTo(x+w, y+h, x, y+h, r);
-        this.arcTo(x, y+h, x, y, r);
-        this.arcTo(x, y, x+w, y, r);
-        this.closePath();
-        return this;
-      };
-    }
-
     function openFinal(){
-      $("#finalTitle").textContent = CONFIG.finalTitle;
-      $("#finalMsg").textContent = CONFIG.finalMsg;
-
-      const chips = $("#chips");
-      chips.innerHTML = "";
-      for (const c of CONFIG.planChips){
-        const span = document.createElement("span");
-        span.className = "chip";
-        span.textContent = c;
-        chips.appendChild(span);
-      }
-
       overlay.classList.add("show");
       startConfetti();
     }
-
     function closeFinal(){
       overlay.classList.remove("show");
     }
 
     yesBtn.addEventListener("click", openFinal);
     closeBtn.addEventListener("click", closeFinal);
-    overlay.addEventListener("click", (e) => {
-      if (e.target === overlay) closeFinal();
-    });
+    overlay.addEventListener("click", (e) => { if (e.target === overlay) closeFinal(); });
 
-    // Copiar mensaje
-    $("#copyBtn").addEventListener("click", async () => {
-      const text = `${CONFIG.toName}, ¿quieres ser mi San Valentín? 💘\n\n${CONFIG.finalMsg}\n\n— ${CONFIG.fromName}`;
+    // Copiar mensaje (de AJ para Jelly)
+    document.getElementById("copyBtn").addEventListener("click", async () => {
+      const text =
+`Jelly, ¿quieres ser mi San Valentín? 💘
+
+Gracias por decir que sí. Prometo cuidarte, hacerte reír y seguir construyendo lo nuestro con detalles bonitos.
+¿Celebramos con una cita especial? 🌷
+
+— AJ`;
       try{
         await navigator.clipboard.writeText(text);
-        $("#copyBtn").textContent = "✅ Copiado";
-        setTimeout(()=> $("#copyBtn").textContent = "📋 Copiar mensajito", 1400);
+        const btn = document.getElementById("copyBtn");
+        btn.textContent = "✅ Copiado";
+        setTimeout(()=> btn.textContent = "📋 Copiar mensajito", 1400);
       } catch {
-        alert("Tu navegador no dejó copiar automático. Igual puedes seleccionar y copiar manualmente 🙂");
+        alert("No se pudo copiar automático. Puedes copiarlo manualmente 🙂");
       }
-    });
-
-    // Tip para editar
-    $("#editTip").addEventListener("click", (e) => {
-      e.preventDefault();
-      alert("Edita el objeto CONFIG en el <script> para cambiar nombres, mensajes y opciones 💘");
     });
   </script>
 </body>
